@@ -18,6 +18,10 @@
 package bisq.inventory;
 
 
+import bisq.common.UserThread;
+import bisq.common.config.BaseCurrencyNetwork;
+import bisq.common.file.JsonFileManager;
+import bisq.common.util.Tuple2;
 import bisq.core.app.TorSetup;
 import bisq.core.network.p2p.inventory.GetInventoryRequestManager;
 import bisq.core.network.p2p.inventory.model.Average;
@@ -27,33 +31,18 @@ import bisq.core.network.p2p.inventory.model.RequestInfo;
 import bisq.core.network.p2p.seed.DefaultSeedNodeRepository;
 import bisq.core.proto.network.CoreNetworkProtoResolver;
 import bisq.core.util.JsonUtil;
-
 import bisq.network.p2p.NetworkNodeProvider;
 import bisq.network.p2p.NodeAddress;
 import bisq.network.p2p.network.NetworkNode;
 import bisq.network.p2p.network.SetupListener;
-
-import bisq.common.UserThread;
-import bisq.common.config.BaseCurrencyNetwork;
-import bisq.common.file.JsonFileManager;
-import bisq.common.util.Tuple2;
-
-import java.time.Clock;
-
-import java.io.File;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
+import java.io.File;
+import java.time.Clock;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class InventoryMonitor implements SetupListener {
@@ -172,7 +161,7 @@ public class InventoryMonitor implements SetupListener {
 
         boolean ignoreDeviationAtStartup;
         if (result != null) {
-            log.info("nodeAddress={}, result={}", nodeAddress, result.toString());
+            log.info("nodeAddress={}, result={}", nodeAddress, result);
 
             // If seed just started up we ignore the deviation as it can be expected that seed is still syncing
             // DAO state/blocks. P2P data should be ready but as we received it from other seeds it is not that

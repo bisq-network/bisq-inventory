@@ -18,32 +18,23 @@
 package bisq.inventory;
 
 
-import bisq.core.locale.Res;
-
 import bisq.common.UserThread;
 import bisq.common.app.AsciiLogo;
 import bisq.common.app.Log;
 import bisq.common.app.Version;
 import bisq.common.config.BaseCurrencyNetwork;
 import bisq.common.util.Utilities;
-
+import bisq.core.locale.Res;
+import ch.qos.logback.classic.Level;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-
-import java.nio.file.Paths;
+import lombok.extern.slf4j.Slf4j;
+import sun.misc.Signal;
 
 import java.io.File;
-
+import java.nio.file.Paths;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-
-import ch.qos.logback.classic.Level;
-
-import lombok.extern.slf4j.Slf4j;
-
-
-
-import sun.misc.Signal;
 
 @Slf4j
 public class InventoryMonitorMain {

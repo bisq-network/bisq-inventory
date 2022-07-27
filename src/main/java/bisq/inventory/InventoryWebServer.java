@@ -17,38 +17,21 @@
 
 package bisq.inventory;
 
-import bisq.core.network.p2p.inventory.model.DeviationByIntegerDiff;
-import bisq.core.network.p2p.inventory.model.DeviationByPercentage;
-import bisq.core.network.p2p.inventory.model.DeviationSeverity;
-import bisq.core.network.p2p.inventory.model.InventoryItem;
-import bisq.core.network.p2p.inventory.model.RequestInfo;
-import bisq.core.util.FormattingUtils;
-
-import bisq.network.p2p.NodeAddress;
-
 import bisq.common.app.Version;
 import bisq.common.util.MathUtils;
 import bisq.common.util.Utilities;
-
+import bisq.core.network.p2p.inventory.model.*;
+import bisq.core.util.FormattingUtils;
+import bisq.network.p2p.NodeAddress;
 import com.google.common.base.Joiner;
+import lombok.extern.slf4j.Slf4j;
+import spark.Spark;
 
+import javax.annotation.Nullable;
 import java.io.BufferedReader;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-
-import lombok.extern.slf4j.Slf4j;
-
-import org.jetbrains.annotations.Nullable;
-
-
-
-import spark.Spark;
 
 @Slf4j
 public class InventoryWebServer {
@@ -102,17 +85,17 @@ public class InventoryWebServer {
     private String generateHtml(Map<NodeAddress, List<RequestInfo>> map) {
         StringBuilder html = new StringBuilder();
         html.append("<html>" +
-                "<head>" +
-                "<style type=\"text/css\">" +
-                "   a {" +
-                "      text-decoration:none; color: black;" +
-                "   }" +
-                " #warn { color: #ff7700; } " +
-                " #alert { color: #ff0000; } " +
-                "table, th, td {border: 1px solid black;}" +
-                "</style></head>" +
-                "<body><h3>")
-                .append("Current time: ").append(new Date().toString()).append("<br/>")
+                        "<head>" +
+                        "<style type=\"text/css\">" +
+                        "   a {" +
+                        "      text-decoration:none; color: black;" +
+                        "   }" +
+                        " #warn { color: #ff7700; } " +
+                        " #alert { color: #ff0000; } " +
+                        "table, th, td {border: 1px solid black;}" +
+                        "</style></head>" +
+                        "<body><h3>")
+                .append("Current time: ").append(new Date()).append("<br/>")
                 .append("Request cycle: ").append(requestCounter).append("<br/>")
                 .append("Version/commit: ").append(Version.VERSION).append(" / ").append(RequestInfo.COMMIT_HASH).append("<br/>")
                 .append("<table style=\"width:100%\">")
@@ -182,7 +165,7 @@ public class InventoryWebServer {
             String jvmStartTimeString = requestInfo.getValue(InventoryItem.jvmStartTime);
             long jvmStartTime = jvmStartTimeString != null ? Long.parseLong(jvmStartTimeString) : 0;
             sb.append("Node started at: ")
-                    .append(new Date(jvmStartTime).toString())
+                    .append(new Date(jvmStartTime))
                     .append("<br/>");
 
             String duration = jvmStartTime > 0 ?
@@ -535,7 +518,7 @@ public class InventoryWebServer {
     }
 
     private String getLastSuccessfulResponseLine(NodeAddress seedNode,
-                                   Map<NodeAddress, List<RequestInfo>> map) {
+                                                 Map<NodeAddress, List<RequestInfo>> map) {
         long newestResponseTime = 0;
         List<RequestInfo> requestInfoList = map.get(seedNode);
         if (requestInfoList != null) {
