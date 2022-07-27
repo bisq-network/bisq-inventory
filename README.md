@@ -2,7 +2,7 @@
 
 ## Overview
 
-TODO
+For checking the health of the Bisq seed nodes from a browser, e.g., http://localhost:8080
 
 ## Building source code
 
