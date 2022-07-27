@@ -1,6 +1,6 @@
-# Version Catalogs documentation: https://docs.gradle.org/7.4.2/userguide/platforms.html
+# Version Catalogs documentation: https://docs.gradle.org/7.5/userguide/platforms.html
 # Used in the [libraries] and [bundles] sections below using version.ref
-# See https://docs.gradle.org/7.4.2/userguide/rich_versions.html for keywords (strictly / required / prefer / reject)
+# See https://docs.gradle.org/7.5/userguide/rich_versions.html for keywords (strictly / required / prefer / reject)
 # Convention: mark all versions using 'strictly'. This ensures only one version is allowed in the dependency tree, even
 # when multiple versions are attempted to be brought in as transitive dependencies of other requirements.
 [versions]
@@ -9,7 +9,6 @@ guice-lib = { strictly = '5.0.1' }
 junit-jupiter-lib = { strictly = '5.8.2' }
 logback-lib = { strictly = '1.2.6' }
 lombok-lib = { strictly = '1.18.22' }
-netlayer-lib = { strictly = '0.7.4' }
 openjfx-plugin = { strictly = '0.0.12' }
 slf4j-lib = { strictly = '1.7.36' }
 spark-lib = { strictly = '2.5.2' }
@@ -24,8 +23,6 @@ junit-jupiter = { module = 'org.junit.jupiter:junit-jupiter', version.ref = 'jun
 logback-core = { module = 'ch.qos.logback:logback-core', version.ref = 'logback-lib' }
 logback-classic = { module = 'ch.qos.logback:logback-classic', version.ref = 'logback-lib' }
 lombok = { module = 'org.projectlombok:lombok', version.ref = 'lombok-lib' }
-netlayer-tor = { module = 'com.github.bisq-network.netlayer:tor', version.ref = 'netlayer-lib' }
-netlayer-tor-native = { module = 'com.github.bisq-network.netlayer:tor.native', version.ref = 'netlayer-lib' }
 slf4j-api = { module = 'org.slf4j:slf4j-api', version.ref = 'slf4j-lib' }
 spark-core = { module = 'com.sparkjava:spark-core', version.ref = 'spark-lib' }
 
