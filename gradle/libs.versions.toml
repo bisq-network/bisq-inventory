@@ -9,7 +9,6 @@ guice-lib = { strictly = '5.0.1' }
 junit-jupiter-lib = { strictly = '5.8.2' }
 logback-lib = { strictly = '1.2.6' }
 lombok-lib = { strictly = '1.18.22' }
-openjfx-plugin = { strictly = '0.0.12' }
 slf4j-lib = { strictly = '1.7.36' }
 spark-lib = { strictly = '2.5.2' }
 
@@ -29,4 +28,4 @@ spark-core = { module = 'com.sparkjava:spark-core', version.ref = 'spark-lib' }
 [bundles]
 
 [plugins]
-openjfx = { id = 'org.openjfx.javafxplugin', version.ref = 'openjfx-plugin' }
+

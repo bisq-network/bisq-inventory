@@ -1,6 +1,5 @@
 plugins {
     id 'application'
-    // alias(libs.plugins.openjfx)
     id 'bisq.post-build'
 }
 
@@ -26,12 +25,6 @@ jar.manifest.attributes(
         "Implementation-Title": project.name,
         "Implementation-Version": version
 )
-/*
-javafx {
-    version = '11.0.2'
-    modules = ['javafx.controls']
-}
-*/
 
 configurations.all {
     exclude group: 'com.github.bisq-network:bitcoinj'
