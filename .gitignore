@@ -1,0 +1,6 @@
+.gradle
+.idea
+build
+bisq-inventory
+bisq-inventory.bat
+lib
