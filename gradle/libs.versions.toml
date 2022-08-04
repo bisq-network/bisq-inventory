@@ -10,6 +10,7 @@ junit-jupiter-lib = { strictly = '5.8.2' }
 logback-lib = { strictly = '1.2.6' }
 lombok-lib = { strictly = '1.18.22' }
 slf4j-lib = { strictly = '1.7.36' }
+shadow-plugin = { strictly = '5.2.0' }
 spark-lib = { strictly = '2.5.2' }
 
 # Referenced in subproject's build.gradle > dependencies block in the form 'implementation libs.guava'
@@ -28,4 +29,4 @@ spark-core = { module = 'com.sparkjava:spark-core', version.ref = 'spark-lib' }
 [bundles]
 
 [plugins]
-
+shadow = { id = 'com.github.johnrengelman.shadow', version.ref = 'shadow-plugin' }
