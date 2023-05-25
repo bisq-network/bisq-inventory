@@ -83,6 +83,7 @@ public class InventoryWebServer {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     private String generateHtml(Map<NodeAddress, List<RequestInfo>> map) {
+        Optional<String> commitHash = Version.findCommitHash();
         StringBuilder html = new StringBuilder();
         html.append("<html>" +
                         "<head>" +
@@ -97,7 +98,7 @@ public class InventoryWebServer {
                         "<body><h3>")
                 .append("Current time: ").append(new Date()).append("<br/>")
                 .append("Request cycle: ").append(requestCounter).append("<br/>")
-                .append("Version/commit: ").append(Version.VERSION).append(" / ").append(RequestInfo.COMMIT_HASH).append("<br/>")
+                .append("Version/commit: ").append(Version.VERSION).append(" / ").append(commitHash.isPresent() ? commitHash.get() : "?").append("<br/>")
                 .append("<table style=\"width:100%\">")
                 .append("<tr>")
                 .append("<th align=\"left\">Seed node info</th>")
