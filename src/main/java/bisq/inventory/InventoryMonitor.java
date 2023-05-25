@@ -250,6 +250,7 @@ public class InventoryMonitor implements SetupListener {
         return new NetworkNodeProvider(networkProtoResolver,
                 ArrayList::new,
                 null,
+                15,
                 useLocalhostForP2P,
                 9999,
                 torDir,
